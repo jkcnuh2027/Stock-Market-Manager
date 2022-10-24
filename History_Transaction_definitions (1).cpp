@@ -121,9 +121,20 @@ History::History() {
 History::~History() {
     free(this);
 }
+// Destructor
+// TASK 3
+//
+History::~History() {
+  Transaction * p_temp{p_head};
+  while (p_head != nullptr) {
+    p_temp = p_temp->get_next();
 
+    delete p_head;
+    p_head = nullptr;
 
-// read_history(...): Read the transaction history from file.
+    p_head = p_temp;
+  }
+}
 // TASK 4
 //
 void History::read_history() {
